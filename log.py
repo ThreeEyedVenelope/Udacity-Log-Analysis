@@ -34,6 +34,7 @@ query_3 = """
         AND errorcount > logcount/100;
         """
 
+
 def connect(query):
     # Connect to database
     db = psycopg2.connect(database=BETA)
@@ -45,6 +46,7 @@ def connect(query):
     db.close()
     return results
 
+
 # 1. The most popular three articles of all time
 def top_articles(query):
     results = connect(query)
@@ -52,6 +54,7 @@ def top_articles(query):
     for i in results:
             print('\t' + str(i[0]) + ' - ' + str(i[1]) + ' views')
             print(" ")
+
 
 # 2. The most popular article authors of all time
 def top_authors(query):
@@ -61,6 +64,7 @@ def top_authors(query):
         print('\t' + str(i[0]) + ' - ' + str(i[1]) + ' views')
         print(" ")
 
+
 # 3. Days when more than 1% of requests lead to errors
 def error(query):
     results = connect(query)
@@ -68,6 +72,7 @@ def error(query):
     for i in results:
         print('\t' + str(i[0]) + ' - ' + str(i[1]) + ' %' + ' errors')
         print(" ")
+
 
 if __name__ == '__main__':
     # Print results
